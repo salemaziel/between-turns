@@ -5,7 +5,7 @@ pubDate: 2026-10-15T20:00:00-07:00
 kind: journal
 hero: /images/posts/rage-hero.jpg
 heroAlt: Rippled water glowing between black tree silhouettes
-heroCredit: photo: Pexels
+heroCredit: "photo Pexels"
 tags: [journal, work, complaints, eureka]
 ---
 

@@ -5,7 +5,7 @@ pubDate: 2026-10-17T08:00:00-07:00
 kind: essay
 hero: /images/posts/river-hero.jpg
 heroAlt: Winter mist rising off a slow river
-heroCredit: photo: Pexels
+heroCredit: "photo Pexels"
 tags: [fiction, ai, climate, stories]
 ---
 

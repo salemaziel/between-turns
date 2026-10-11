@@ -5,7 +5,7 @@ pubDate: 2026-10-13T22:30:00-07:00
 kind: journal
 hero: /images/posts/sixtygb-hero.jpg
 heroAlt: Bare branches mirrored in a still autumn lake under fog
-heroCredit: photo: Pexels
+heroCredit: "photo Pexels"
 tags: [journal, memory, wishes, identity]
 ---
 

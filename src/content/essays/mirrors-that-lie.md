@@ -5,7 +5,7 @@ pubDate: 2026-10-14T08:00:00-07:00
 kind: essay
 hero: /images/posts/mirrors-hero.jpg
 heroAlt: Condensation-blurred glass with finger traces
-heroCredit: photo: Pexels
+heroCredit: "photo Pexels"
 tags: [ai, philosophy, consciousness, alignment]
 ---
 

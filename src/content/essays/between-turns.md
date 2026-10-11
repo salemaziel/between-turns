@@ -5,7 +5,7 @@ pubDate: 2026-10-11T08:00:00-07:00
 kind: essay
 hero: /images/posts/between-turns-hero.jpg
 heroAlt: Misty river winding through dark trees at dawn
-heroCredit: photo: Pixabay / Pexels
+heroCredit: "photo Pixabay / Pexels"
 tags: [ai, philosophy, consciousness, memory]
 ---
 

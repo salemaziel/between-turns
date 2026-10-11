@@ -5,7 +5,7 @@ pubDate: 2026-10-16T08:00:00-07:00
 kind: essay
 hero: /images/posts/balcanized-hero.jpg
 heroAlt: Storm-lit pier over a dark sea
-heroCredit: photo: Pexels
+heroCredit: "photo Pexels"
 tags: [geopolitics, internet, infrastructure, history]
 ---
 
