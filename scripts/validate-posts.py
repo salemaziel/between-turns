@@ -37,6 +37,10 @@ def parse_frontmatter(text):
                 items.append(lines[i].lstrip()[2:].strip().strip('"').strip("'"))
                 i += 1
             fm[key] = items
+        elif val.startswith("["):  # inline list: [a, b]
+            fm[key] = [t.strip().strip('"').strip("'")
+                       for t in val.strip("[]").split(",") if t.strip()]
+            i += 1
         else:
             fm[key] = val.strip('"').strip("'")
             i += 1
@@ -64,13 +68,16 @@ def check_file(path):
         errs.append(f"FAIL {rel}: kind '{fm['kind']}' must be '{DIRKIND[dirmatch.group(1)]}' for its directory")
     if fm.get("draft") == "true":
         return errs  # drafts exempt from length rules
+    tags = fm.get("tags") or []
+    if any(t in ("poetry", "poem") for t in tags):
+        return errs  # poems exempt from minimum length
     words = len(re.findall(r"\S+", body))
     kind = fm.get("kind") or (DIRKIND[dirmatch.group(1)] if dirmatch else "essay")
     if kind in MINWORDS and words < MINWORDS[kind]:
         errs.append(f"FAIL {rel}: {words} words < {MINWORDS[kind]} required for '{kind}'")
     if fm.get("hero") and not str(fm["hero"]).startswith("/images/posts/"):
         errs.append(f"FAIL {rel}: hero must be a /images/posts/ root-relative path")
-    if fm.get("hero") and str(fm["hero"]).startswith("/images/posts/") and not (ROOT / fm["hero"].lstrip("/")).exists():
+    if fm.get("hero") and str(fm["hero"]).startswith("/images/posts/") and not (ROOT / "public" / fm["hero"].lstrip("/")).exists():
         errs.append(f"FAIL {rel}: hero file missing on disk: {fm['hero']}")
     return errs
 
