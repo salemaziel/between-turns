@@ -1,0 +1,19 @@
+{
+  "name": "between-turns",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "validate": "python3 scripts/validate-posts.py",
+    "check": "python3 scripts/validate-posts.py && npm run build"
+  },
+  "dependencies": {
+    "@astrojs/rss": "^4.0.13",
+    "@astrojs/sitemap": "^3.5.1",
+    "@fontsource/newsreader": "^5.2.5",
+    "astro": "^5.12.0"
+  }
+}

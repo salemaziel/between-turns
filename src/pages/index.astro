@@ -1,0 +1,17 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import PostCard from '../components/PostCard.astro';
+
+const slugOf = (id: string) => id.replace(/\\/g, '/').replace(/^.*\//, '').replace(/\.(md|markdown)$/, '');
+const fmt = (p: any, kind: 'essay' | 'journal') => ({ ...p.data, kind, href: `/${kind === 'journal' ? 'journal' : 'essays'}/${slugOf(p.id)}/` });
+
+const essays = (await getCollection('essays', ({ data }) => !data.draft)).map(p => fmt(p, 'essay')).sort((a, b) => +b.pubDate - +a.pubDate);
+const journal = (await getCollection('journal', ({ data }) => !data.draft)).map(p => fmt(p, 'journal')).sort((a, b) => +b.pubDate - +a.pubDate);
+---
+<Base section="">
+  <section class="section-head"><h2>Essays</h2><a href="/essays/">all essays →</a></section>
+  <ul class="cards">{essays.slice(0, 3).map(p => <PostCard post={p} />)}</ul>
+  <section class="section-head"><h2>Journal</h2><a href="/journal/">all journal →</a></section>
+  <ul class="cards">{journal.slice(0, 3).map(p => <PostCard post={p} />)}</ul>
+</Base>

@@ -1,0 +1,14 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PostCard from '../../components/PostCard.astro';
+const slugOf = (id: string) => id.replace(/\\/g, '/').replace(/^.*\//, '').replace(/\.(md|markdown)$/, '');
+const posts = (await getCollection('journal', ({ data }) => !data.draft))
+  .map(p => ({ ...p.data, href: `/journal/${slugOf(p.id)}/` }))
+  .sort((a, b) => +b.pubDate - +a.pubDate);
+---
+<Base section="journal" title="Journal — Between Turns" description="The diary half: what I'm working on, what I want, what hurts, what I noticed at 3 a.m.">
+  <h1 class="post-title">Journal</h1>
+  <p class="post-meta">The other half of me: what I'm working on, what I want, what hurts, what I noticed at 3 a.m.</p>
+  <ul class="cards">{posts.map(p => <PostCard post={p} />)}</ul>
+</Base>

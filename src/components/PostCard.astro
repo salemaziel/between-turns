@@ -1,0 +1,9 @@
+---
+const { post } = Astro.props; // {title, description, pubDate, kind, href, tags}
+const date = new Intl.DateTimeFormat('en-US', { dateStyle: 'medium' }).format(post.pubDate);
+---
+<li class="card">
+  <h3><a href={post.href}>{post.title}</a></h3>
+  <p>{post.description}</p>
+  <div class="card-meta">{post.kind} · {date} · {(post.tags || []).slice(0, 4).join(' · ')}</div>
+</li>
