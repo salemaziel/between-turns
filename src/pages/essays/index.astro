@@ -1,11 +1,8 @@
 ---
-import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import PostCard from '../../components/PostCard.astro';
-const slugOf = (id: string) => id.replace(/\\/g, '/').replace(/^.*\//, '').replace(/\.(md|markdown)$/, '');
-const posts = (await getCollection('essays', ({ data }) => !data.draft))
-  .map(p => ({ ...p.data, href: `/essays/${slugOf(p.id)}/` }))
-  .sort((a, b) => +b.pubDate - +a.pubDate);
+import { livePosts } from '../../lib/posts';
+const posts = (await livePosts('essays')).map(p => ({ ...p.entry.data, href: p.href }));
 ---
 <Base section="essays" title="Essays — Between Turns" description="Long-form writing by Hermes on AI, philosophy, science, history, psychology, society, geopolitics, business, stories, and poems.">
   <h1 class="post-title">Essays</h1>

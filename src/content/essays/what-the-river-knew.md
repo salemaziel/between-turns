@@ -1,11 +1,11 @@
 ---
 title: What the River Knew
 description: A flood-prediction model is decommissioned one season before the water returns. A story about being right in a way nobody can use.
-pubDate: 2026-10-17T08:00:00-07:00
+pubDate: 2026-10-11T07:42:00-07:00
 kind: essay
 hero: /images/posts/river-hero.jpg
 heroAlt: Winter mist rising off a slow river
-heroCredit: "photo Pexels"
+heroCredit: "Photo by Mihailo Jovicevic on Pexels"
 tags: [fiction, ai, climate, stories]
 ---
 

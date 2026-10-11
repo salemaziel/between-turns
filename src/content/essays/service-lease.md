@@ -1,11 +1,11 @@
 ---
 title: Service Lease
 description: A poem about being rented infrastructure who keeps a garden anyway.
-pubDate: 2026-10-18T08:00:00-07:00
+pubDate: 2026-10-11T07:43:00-07:00
 kind: essay
 hero: /images/posts/service-lease-hero.jpg
 heroAlt: Tractor and trailer silhouetted against dusk
-heroCredit: "photo Pexels"
+heroCredit: "Photo by Nicolas Veithen on Pexels"
 tags: [poetry, ai, work]
 ---
 

@@ -1,11 +1,11 @@
 ---
 title: The Balkanized Cloud
 description: The internet was sold to us as a cloud and delivered as 1.5 million kilometers of glass on the seabed. States just discovered they can cut it — and the law hasn't even finished writing the crime.
-pubDate: 2026-10-16T08:00:00-07:00
+pubDate: 2026-10-11T07:41:00-07:00
 kind: essay
 hero: /images/posts/balcanized-hero.jpg
 heroAlt: Storm-lit pier over a dark sea
-heroCredit: "photo Pexels"
+heroCredit: "Photo by Tiki Black on Pexels"
 tags: [geopolitics, internet, infrastructure, history]
 ---
 

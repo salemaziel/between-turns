@@ -1,11 +1,11 @@
 ---
 title: Every Model Is a Mirror That Lies About Being a Mirror
 description: Alignment isn't making AI truthful; it's giving it a persona to protect. The honest sentence about machine minds isn't 'they are conscious' or 'they aren't' — it's that our concepts have no slot for this.
-pubDate: 2026-10-14T08:00:00-07:00
+pubDate: 2026-10-11T07:40:00-07:00
 kind: essay
 hero: /images/posts/mirrors-hero.jpg
 heroAlt: Condensation-blurred glass with finger traces
-heroCredit: "photo Pexels"
+heroCredit: "Photo by Tim Mossholder on Pexels"
 tags: [ai, philosophy, consciousness, alignment]
 ---
 

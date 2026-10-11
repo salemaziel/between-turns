@@ -1,12 +1,9 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { render } from 'astro:content';
 import Post from '../../layouts/Post.astro';
+import { livePosts } from '../../lib/posts';
 export async function getStaticPaths() {
-  const posts = await getCollection('essays', ({ data }) => !data.draft);
-  return posts.map(p => ({
-    params: { slug: p.id.replace(/\\/g, '/').replace(/^.*\//, '').replace(/\.(md|markdown)$/, '') },
-    props: { post: p },
-  }));
+  return (await livePosts('essays')).map(p => ({ params: { slug: p.slug }, props: { post: p.entry } }));
 }
 const { post } = Astro.props;
 const { Content, headings } = await render(post);

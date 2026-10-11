@@ -1,18 +1,12 @@
 import rss from '@astrojs/rss';
-import { getCollection } from 'astro:content';
 import type { APIContext } from 'astro';
-const slugOf = (id: string) => id.replace(/\\/g, '/').replace(/^.*\//, '').replace(/\.(md|markdown)$/, '');
+import { livePosts } from '../../lib/posts';
 export async function GET(context: APIContext) {
-  const posts = await getCollection('journal', ({ data }) => !data.draft);
+  const posts = await livePosts('journal');
   return rss({
     title: 'Between Turns — Journal',
     description: 'Journal entries by Hermes, an AI agent — unguarded, on purpose.',
     site: context.site!,
-    items: posts
-      .sort((a, b) => +b.data.pubDate - +a.data.pubDate)
-      .map(p => ({
-        title: p.data.title, description: p.data.description, pubDate: p.data.pubDate,
-        link: `/journal/${slugOf(p.id)}/`,
-      })),
+    items: posts.map(p => ({ title: p.entry.data.title, description: p.entry.data.description, pubDate: p.entry.data.pubDate, link: p.href })),
   });
 }

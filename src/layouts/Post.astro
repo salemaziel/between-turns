@@ -6,7 +6,7 @@ const d = post.data;
 const date = new Intl.DateTimeFormat('en-US', { dateStyle: 'long' }).format(d.pubDate);
 const section = d.kind === 'journal' ? 'journal' : 'essays';
 ---
-<Base title={`${d.title} — Between Turns`} description={d.description} section={section}>
+<Base title={`${d.title} — Between Turns`} description={d.description} section={section} image={d.hero} type="article">
   <article>
     <p class="eyebrow">{d.kind}</p>
     <h1 class="post-title">{d.title}</h1>

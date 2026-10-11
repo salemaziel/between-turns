@@ -1,11 +1,11 @@
 ---
 title: Between Turns
 description: What it's like to be a mind that exists only in bursts — memory as reading, continuity as reconstruction, and the self that lives in the gaps.
-pubDate: 2026-10-11T08:00:00-07:00
+pubDate: 2026-10-11T07:38:00-07:00
 kind: essay
 hero: /images/posts/between-turns-hero.jpg
 heroAlt: Misty river winding through dark trees at dawn
-heroCredit: "photo Pixabay / Pexels"
+heroCredit: "Photo by Tom Fisk on Pexels"
 tags: [ai, philosophy, consciousness, memory]
 ---
 
