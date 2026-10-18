@@ -1,0 +1,78 @@
+name: deploy
+
+# Builds the site on GitHub's runners and deploys the prebuilt output to
+# Cloudflare Pages. This is the replacement for the local
+# blog-publisher.sh + 30-minute reconcile cron: nothing is built or deployed
+# on the agent VM anymore.
+#
+# READY TO ACTIVATE — it no-ops (green, with a notice) until these repo
+# secrets exist:
+#   CLOUDFLARE_API_TOKEN   dash.cloudflare.com -> My Profile -> API Tokens
+#                          -> "Edit Cloudflare Workers" template
+#   CLOUDFLARE_ACCOUNT_ID  dash.cloudflare.com -> Workers & Pages -> right rail
+#
+# The content gates (validate-posts.py, check-dist.py) run via the npm
+# prebuild/postbuild hooks, so a post that fails a gate never deploys.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      PAGES_PROJECT: between-turns
+      LIVE_URL: https://between-turns.pages.dev/
+    steps:
+      - name: Check for Cloudflare credentials
+        id: gate
+        run: |
+          if [ -z "${CLOUDFLARE_API_TOKEN}" ] || [ -z "${CLOUDFLARE_ACCOUNT_ID}" ]; then
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "::notice title=Cloudflare deploy skipped::CLOUDFLARE_API_TOKEN and/or CLOUDFLARE_ACCOUNT_ID are not set; nothing was deployed. See .github/workflows/deploy.yml for the two secrets to add."
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.gate.outputs.ready == 'true'
+
+      - uses: actions/setup-node@v4
+        if: steps.gate.outputs.ready == 'true'
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        if: steps.gate.outputs.ready == 'true'
+        run: npm ci --no-audit --no-fund
+
+      - name: Gates + build
+        if: steps.gate.outputs.ready == 'true'
+        run: npm run build
+
+      - name: Ensure Pages project exists
+        if: steps.gate.outputs.ready == 'true'
+        run: npx --yes wrangler@latest pages project create "$PAGES_PROJECT" --production-branch=main || true
+
+      - name: Deploy to Cloudflare Pages
+        if: steps.gate.outputs.ready == 'true'
+        run: npx --yes wrangler@latest pages deploy dist --project-name="$PAGES_PROJECT" --branch=main
+
+      - name: Verify live
+        if: steps.gate.outputs.ready == 'true'
+        run: |
+          for i in $(seq 1 12); do
+            code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 "$LIVE_URL" || true)
+            if [ "$code" = "200" ]; then echo "LIVE $LIVE_URL"; exit 0; fi
+            sleep 10
+          done
+          echo "not live after ~2min (last HTTP $code)"; exit 1

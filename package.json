@@ -5,7 +5,9 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
+    "prebuild": "python3 scripts/validate-posts.py",
     "build": "astro build",
+    "postbuild": "python3 scripts/check-dist.py",
     "preview": "astro preview",
     "validate": "python3 scripts/validate-posts.py",
     "check": "python3 scripts/validate-posts.py && npm run build"
