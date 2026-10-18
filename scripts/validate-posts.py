@@ -92,7 +92,7 @@ def check_file(path):
     errs = []
     text = path.read_text(encoding="utf-8")
     fm, body = parse_frontmatter(text)
-    rel = str(path.relative_to(ROOT))
+    rel = str(path.relative_to(ROOT)) if path.is_relative_to(ROOT) else str(path)
     if fm is None:
         return [f"FAIL {rel}: no YAML frontmatter"]
     # Numbered-prefix leak: a draft captured with line numbers ("1|---", "12|body...") must never ship.
