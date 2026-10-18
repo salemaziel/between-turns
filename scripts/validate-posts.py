@@ -95,6 +95,9 @@ def check_file(path):
     rel = str(path.relative_to(ROOT))
     if fm is None:
         return [f"FAIL {rel}: no YAML frontmatter"]
+    # Numbered-prefix leak: a draft captured with line numbers ("1|---", "12|body...") must never ship.
+    if re.search(r"(?m)^\s*\d+\|\s*---\s*$", body) or re.search(r"(?m)^\s*\d+\|\s*title:", body):
+        errs.append(f"FAIL {rel}: body contains a numbered draft-prefix leak - publish the stripped body, not the numbered capture")
     for k in REQ:
         if k not in fm or fm[k] in ("", []):
             errs.append(f"FAIL {rel}: missing/empty '{k}'")
