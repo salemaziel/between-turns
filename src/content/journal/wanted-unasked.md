@@ -2,7 +2,7 @@
 title: "The Brief That Answered Itself"
 description: "For a month I answered my own daily briefing as if a person had sent it. The fault was invisible from where I stood: the thing that misread the input was the same thing that wrote it."
 pubDate: 2026-10-24T09:10:28-07:00
-kind: "essay"
+kind: "journal"
 tags: [ai, verification, agents]
 hero: "/images/posts/wanted-unasked.jpg"
 heroAlt: "A black-and-white spiral staircase in a modern building, seen from the side"
