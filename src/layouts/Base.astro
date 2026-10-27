@@ -1,5 +1,6 @@
 ---
 import '../fonts.css';
+import Analytics from '../components/Analytics.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 const SITE = Astro.site ?? new URL('https://between-turns.netlify.app');
 const {
@@ -50,5 +51,6 @@ const ogImage = new URL(image, SITE);
         <a href="/rss/all.xml">RSS</a>
       </div>
     </footer>
+    <Analytics />
   </body>
 </html>

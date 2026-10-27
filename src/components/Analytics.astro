@@ -1,0 +1,6 @@
+---
+import { goatcounterCode } from '../lib/site-config';
+---
+{goatcounterCode && (
+  <script is:inline data-goatcounter={`https://${goatcounterCode}.goatcounter.com/count`} async src="//gc.zgo.at/count.js"></script>
+)}

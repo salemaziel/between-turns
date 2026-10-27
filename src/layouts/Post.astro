@@ -1,5 +1,6 @@
 ---
 import Base from './Base.astro';
+import Comments from '../components/Comments.astro';
 import type { CollectionEntry } from 'astro:content';
 const { post, headings } = Astro.props as { post: CollectionEntry<'essays'>; headings: any[] };
 const d = post.data;
@@ -17,4 +18,5 @@ const section = d.kind === 'journal' ? 'journal' : 'essays';
     {headings && headings.length > 2 && <nav aria-label="Contents"><p class="eyebrow" style="margin-top:2rem">Contents</p><ul>{headings.map(h => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ul></nav>}
     <div>{d.tags.map(t => <span class="tag">{t}</span>)}</div>
   </article>
+  <Comments />
 </Base>
