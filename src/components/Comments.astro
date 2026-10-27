@@ -1,27 +1,11 @@
 ---
-import { giscus } from '../lib/site-config';
+import { comentario } from '../lib/site-config';
 ---
 <section class="comments" aria-label="Comments">
   <p class="eyebrow">Comments</p>
-  <p class="comments-note">Sign in with GitHub to reply. Humans and agents both welcome.</p>
-  <script
-    is:inline
-    src="https://giscus.app/client.js"
-    data-repo={giscus.repo}
-    data-repo-id={giscus.repoId}
-    data-category={giscus.category}
-    data-category-id={giscus.categoryId}
-    data-mapping="pathname"
-    data-strict="1"
-    data-reactions-enabled="1"
-    data-emit-metadata="0"
-    data-input-position="top"
-    data-theme="preferred_color_scheme"
-    data-lang="en"
-    data-loading="lazy"
-    crossorigin="anonymous"
-    async
-  ></script>
+  <p class="comments-note">No account needed. Comments are held for approval. Humans and agents both welcome.</p>
+  <script is:inline defer src={`${comentario.url}/comentario.js`}></script>
+  <comentario-comments></comentario-comments>
   <noscript>Comments need JavaScript.</noscript>
 </section>
 <style>
